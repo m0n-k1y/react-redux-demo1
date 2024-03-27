@@ -14,6 +14,9 @@ const counterStore= createSlice({
     },
     decrement(state) { 
       state.count--
+    },
+    addToNum(state, action) { 
+      state.count =action.payload
     }
   }
 
@@ -22,9 +25,9 @@ const counterStore= createSlice({
 // export const { increment, decrement } = counterStore.actions
 
 //解构出 修改状态的方法
-const { increment, decrement } = counterStore.actions
+const { increment, decrement,addToNum } = counterStore.actions
 //导出
-export { increment, decrement }
+export { increment, decrement,addToNum }
 
 
 //获取并导出 reducer函数
