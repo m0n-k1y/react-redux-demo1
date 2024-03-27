@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { useSelector,useDispatch } from "react-redux";
+//导入 修改状态的方法
+import { increment,decrement } from "./store/modules/counterStore";
 
 function App() {
+  //映射 store 中数据到组件中
+  const { count } = useSelector(store => store.counter)
+  //dispatch 函数
+  const dispatch = useDispatch()
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={() => dispatch(decrement())}>-</button>
+      <span>{ count }</span>
+      <button onClick={()=>dispatch(increment())}>+</button>
     </div>
   );
 }
