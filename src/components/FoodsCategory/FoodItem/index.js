@@ -3,6 +3,7 @@ import './index.scss'
 //导入修改状态的方法
 import { useDispatch } from 'react-redux'
 //导入添加购物车方法
+
 import { addCart } from '../../../store/modules/takeaway'
 const Foods = ({
   id,
@@ -17,8 +18,7 @@ const Foods = ({
   tag,
   count
 }) => {
-
-const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   return (
     <dd className="cate-goods">
@@ -55,7 +55,7 @@ const dispatch = useDispatch()
                   like_ratio_desc,
                   price,
                   tag,
-                  count
+                  count:count || 1
               }))
             }></span>
           </div>

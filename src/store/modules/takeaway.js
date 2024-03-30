@@ -30,11 +30,28 @@ const foodStore = createSlice({
       else { 
         state.cartList.push(action.payload)
       }
+    },
+    //购物车内count增、count减
+    increCount(state, action) { 
+      const item = state.cartList.find(item => item.id === action.payload.id)
+      item.count++
+    },
+    decreCount(state, action) { 
+      const item=state.cartList.find(item => item.id === action.payload.id)
+      if (item.count === 0) {
+        return
+      }
+      item.count--
+    },
+    //清空购物车
+    clearCart(state) { 
+      state.cartList = []
     }
+    
   }
 })
 //获取修改状态的方法
-const { setFoodList,changeActiveIndex,addCart } = foodStore.actions
+const { setFoodList,changeActiveIndex,addCart,increCount,decreCount,clearCart } = foodStore.actions
 
 //异步获取
 const fetchFoodList = () => { 
@@ -44,7 +61,7 @@ const fetchFoodList = () => {
   }
 }
 //导出方法
-export { fetchFoodList,changeActiveIndex,addCart }
+export { fetchFoodList,changeActiveIndex,addCart,increCount,decreCount,clearCart }
 //导出reducer
 const reducer = foodStore.reducer
 export default reducer
